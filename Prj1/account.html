@@ -1,0 +1,20 @@
+<body>
+<div class="main" ng-controller="accountCtrl">
+<form ng-submit="customer.submit()" method="post" id="mySignup">
+	<h1> Account Information </h1><br>
+	<h2> Feel free to change as you see fit! </h2><br>
+			<div class="main-row">
+			<div class="agileits-top"> 
+			<!-- //REMEMBER TO CHECK FOR EXISTING ACCOUNT INFO -->
+	<input class="text" type="text" name="firstName" id="firstName" ng-model="firstName" placeholder="First Name: {{customer.firstName}}">
+	<input class="text" type="text" name="lastName" id="lastName" ng-model="lastName" placeholder="Last Name: {{customer.lastName}}">
+	<input class="text" type="text" name="phone" ng-model="phone" placeholder="Phone Number: {{customer.phone}}">
+	<input class="text" type="password" name="password2" ng-model="password2" placeholder="New Password">
+	<input class="text" type="password" name="password" ng-model="password" placeholder="Current Password" required>
+	<input type="submit" value="Done!">
+	<p><a href="" ng-click="dash()">Woops, Didn't want to change anything!</a></p>
+</form>
+</div>
+</div>
+</div>
+</body>

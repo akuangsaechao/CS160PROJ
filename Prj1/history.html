@@ -1,0 +1,45 @@
+<body>
+	<!-- main -->
+	<div class="main" ng-controller="historyCtrl">
+		<h1>User Ride History</h1>
+		<div class="main-row">
+			<div class="agileits-top"> 
+			<div class="table-history">
+				<table border = "0">            
+            <tr>
+               <td><p><h2>{{customer.fullName()}}</h2></p></td>
+            </tr>
+            <br>
+            <tr>
+               <td><p>User History:</p></td>
+					
+               <td>
+                  <table>
+                     <tr>
+                        <th><p>Driver Name    </p></th>.
+                        <th><p>Price of Ride    </p></th>
+                        <th><p>Day    </p></th>
+                     </tr>
+                     
+                     <a><tr ng-repeat = "subject in customer.history">
+                        <td><p>{{ subject.name }}</p></td>
+                        <td><p>{{ subject.Cost }}</p></td>
+                        <td><p>{{ subject.Day }}</p></td>
+                     </tr></a>
+							
+                  </table>
+               </td>
+					
+            </tr>
+            	</div>
+         </table>
+				<form ng-submit="dash()" method="post" id="myReturn"> 
+					<input type="submit" value="Go Back">
+				</form>
+			</div>	 
+		</div>	
+	</div>	
+
+	<!-- //main --> 
+</body>
+</html>

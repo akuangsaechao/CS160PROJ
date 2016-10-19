@@ -22,11 +22,17 @@ img{max-width:100%;}
 /*--end reset--*/
 body {
     font-family: 'Dosis', sans-serif;
-    background: #161e51;
+    background: #004587;
     background-attachment: fixed;
 }
 h1 {
     font-size: 3em;
+    text-align: center;
+    color: #fff;
+    font-weight: 100;
+}
+h2 {
+    font-size: 2em;
     text-align: center;
     color: #fff;
     font-weight: 100;
@@ -38,13 +44,18 @@ h1 {
 .main-row {
     width: 35%;
     margin: 4em auto;
-    background: url(bagr.jpg)no-repeat center 0px;
+    background: url(bagr2.jpg)no-repeat center 0px;
     background-size: cover;
 }
 .agileits-top {
     padding: 3em;
     background: rgba(0, 0, 0, 0.5);
     border-top: 4px solid #e42148;
+}
+.table-history {
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 4px solid blue;
+    border-left: 4px solid blue;
 }
 input[type="text"],input[type="password"]{
     font-size: 1em;
