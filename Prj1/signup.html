@@ -1,0 +1,17 @@
+<body>
+<div class="main" ng-controller="signupCtrl">
+<form ng-submit="submit()" method="post" id="mySignup">
+	<h1> Sign Up </h1><br>
+			<div class="main-row">
+			<div class="agileits-top"> 
+			<!-- //REMEMBER TO CHECK FOR EXISTING ACCOUNT INFO -->
+	<input class="text" type="text" name="username" id="username" ng-model="username" placeholder="Username" required>
+	<input class="text" type="password" name="password" ng-model="password" placeholder="Password" required>
+	<input class="text" type="password" name="password2" ng-model="password2" placeholder="Re-enter Password" required>
+	<input class="text" type="text" name="phone" ng-model="phone" placeholder="Phone Number:" required>
+	<input type="submit" value="SUBMIT">
+</form>
+</div>
+</div>
+</div>
+</body>
