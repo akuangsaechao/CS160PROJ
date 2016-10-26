@@ -3,21 +3,37 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 module.exports.register = function(req, res) {
-  var user = new User();
 
-  user.name = req.body.name;
-  user.email = req.body.email;
+  User.findOne({ username: username }, function (err, user) {
+      if (err) { 
+        res.status(404).json(err);
+        return;
+      }
 
-  user.setPassword(req.body.password);
+      // Return if user not found in database
+      if (!user) {
 
-  user.save(function(err) {
-    var token;
-    token = user.generateJwt();
-    res.status(200);
-    res.json({
-      "token" : token
-    });
-  });
+        var user = new User();
+
+        user.username = req.body.username;
+        user.firstName = req.body.firstName;
+        user.lastName = req.body.lastName;
+        user.phoneNumber = req.body.phoneNumber;
+        user.creditCard = req.body.creditCard;
+        user.setPassword(req.body.password);
+        user.save(function(err) {
+          var token;
+          token = user.generateJwt();
+          res.status(200);
+          res.json({
+            "token" : token
+          });
+        });   
+      }
+      else {
+        res.status(401).json({ "message" : "User already exists"});
+      }
+  });  
 };
 
 module.exports.login = function(req, res) {

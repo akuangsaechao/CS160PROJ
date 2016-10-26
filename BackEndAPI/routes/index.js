@@ -9,12 +9,23 @@ var auth = jwt({
 
 var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
-
-// profile
-router.get('/profile', auth, ctrlProfile.profileRead);
+var ctrlHistory = require('../controllers/historyController');
+var ctrlRideRequest = require('../controllers/rideRequestController');
 
 // authentication
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
+
+
+// profile
+router.get('/profile', auth, ctrlProfile.profileRead);
+router.update('/profile', auth, ctrlProfile.profileEdit);
+
+// history
+router.get('/history', auth, ctrlHistory.historyRead);
+
+
+// ride request
+
 
 module.exports = router;
