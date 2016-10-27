@@ -1,4 +1,4 @@
-var mongoose = require( 'mongoose' );
+var mongoose = require('mongoose');
 
 var historySchema = new mongoose.Schema({
   riderName: {

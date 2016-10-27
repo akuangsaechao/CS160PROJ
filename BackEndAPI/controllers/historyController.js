@@ -16,3 +16,15 @@ module.exports.historyRead = function(req, res) {
   }
 
 };
+
+module.exports.historyWrite = function(req, res) {
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    // add code to insert history
+  }
+
+};

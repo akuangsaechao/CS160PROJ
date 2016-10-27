@@ -1,4 +1,4 @@
-var mongoose = require( 'mongoose' );
+var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 var config = require('../config');
@@ -45,8 +45,9 @@ userSchema.methods.generateJwt = function() {
 
   return jwt.sign({
     _id: this._id,
-    email: this.email,
-    name: this.name,
+    username: this.username,
+    firstname: this.firstName,
+    lastName: this.lastName,
     exp: parseInt(expiry.getTime() / 1000),
   }, config.secret); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
