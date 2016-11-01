@@ -20,6 +20,7 @@ module.exports.register = function(req, res) {
         user.lastName = req.body.lastName;
         user.phoneNumber = req.body.phoneNumber;
         user.creditCard = req.body.creditCard;
+        user.driverStatus = req.body.driverStatus;
         user.setPassword(req.body.password);
         user.save(function(err) {
           var token;

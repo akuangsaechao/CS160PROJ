@@ -10,12 +10,12 @@ var auth = jwt({
 var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
 var ctrlHistory = require('../controllers/historyController');
-//var ctrlRideRequest = require('../controllers/rideRequestController');
+var ctrlRideRequest = require('../controllers/rideRequestController');
+var ctrlAvailableDrivers = require('../controllers/availableDriversController');
 
 // authentication
 router.post('/register', ctrlAuth.register);
-router.post('/login', ctrlAuth.login);
-
+router.post('/login', ctrlAuth.login); //Add driver if driver status is true using function below
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -23,10 +23,16 @@ router.put('/profile', auth, ctrlProfile.profileEdit);
 
 // history
 router.get('/history', auth, ctrlHistory.historyRead);
-router.post('/history', auth, ctrlHistory.historyWrite);
-
 
 // ride request
+router.get('/request', auth, ctrlRideRequest.checkRiderRequest);
+router.get('/request', auth, ctrlRideRequest.findAvailbleDriver);
+router.delete('/request', auth, ctrlRideRequest.completeRiderRequest); // When ride is complete delete request and add to history
+
+// available drivers
+router.post('/driver', auth, ctrlAvailableDrivers.makeDriverAvailable);
+router.put('/driver', auth, ctrlAvailableDrivers.updateDriverLocation);
+router.delete('/driver', auth, ctrlAvailableDrivers.makeDriverUnavailable); // When log out check if driver status is true, delete driver
 
 
 module.exports = router;
