@@ -50,6 +50,56 @@ app.controller('destCtrl',function ($scope, $location, $rootScope) {
 
         });
 
+                //Search Box
+        $scope.markers = [];
+    var infoWindow = new google.maps.InfoWindow();
+
+    //init autocomplete
+    var input = document.getElementById('pac-input');
+    $scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    //autocomplete.bindTo('bounds', $scope.map);
+    autocomplete.addListener('place_changed', function () {
+        setPlace();
+    });
+
+
+    var setPlace = function () {
+        //infoWindow.close();
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            $scope.map.fitBounds(place.geometry.viewport);
+        } else {
+            $scope.map.setCenter(place.geometry.location);
+        }
+
+        createMarker({ lat: place.geometry.location.lat(), lng: place.geometry.location.lng(), address: place.formatted_address });
+    }
+
+
+    var createMarker = function (info) {
+        var marker = new google.maps.Marker({
+            map: $scope.map,
+            position: new google.maps.LatLng(info.lat, info.lng),
+            title: info.address
+        });
+        marker.content = '<div class="infoWindowContent">' + info.address + '</div>';
+
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+            infoWindow.open($scope.map, marker);
+        });
+        $scope.markers.push(marker);
+        $rootScope.destPos = marker.position;
+    }
+
+
         $(window).resize(function() {
         // (the 'map' here is the result of the created 'var map = ...' above)
             google.maps.event.trigger($scope.map, "resize");
