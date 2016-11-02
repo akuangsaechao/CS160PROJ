@@ -38,6 +38,36 @@ app.config(function($routeProvider) {
 				},
 				templateUrl: 'request.html'
 		})
+		.when('/dest', {
+				resolve: {
+					"check": function($location, $rootScope) {
+						if(!$rootScope.loggedIn) {
+							$location.path('/');
+						}
+					}
+				},
+				templateUrl: 'dest.html'
+		})
+		.when('/waiting', {
+				resolve: {
+					"check": function($location, $rootScope) {
+						if(!$rootScope.loggedIn) {
+							$location.path('/');
+						}
+					}
+				},
+				templateUrl: 'waiting.html'
+		})
+		.when('/driver', {
+				resolve: {
+					"check": function($location, $rootScope) {
+						if(!$rootScope.loggedIn) {
+							$location.path('/');
+						}
+					}
+				},
+				templateUrl: 'driver.html'
+		})
 		.when('/history', {
 				resolve: {
 					"check": function($location, $rootScope) {

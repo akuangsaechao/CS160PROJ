@@ -23,6 +23,8 @@ img{max-width:100%;}
 body {
     font-family: 'Dosis', sans-serif;
     background: #004587;
+    background: url(bagr2.jpg) 0px;
+    background-size:cover;
     background-attachment: fixed;
 }
 h1 {
@@ -37,14 +39,21 @@ h2 {
     color: #fff;
     font-weight: 100;
 }
+h3 {
+    font-size: 1em;
+    text-align: center;
+    color: #fff;
+    font-weight: 100;
+}
 /*--main--*/
 .main {
     padding: 3em 0 0;
 }
 .main-row {
-    width: 35%;
+    width: 70%;
+    padding: 0%;
     margin: 4em auto;
-    background: url(bagr2.jpg)no-repeat center 0px;
+    background: rgba(0, 0, 0, 0.62);
     background-size: cover;
 }
 .agileits-top {
@@ -132,6 +141,32 @@ input[type="submit"]:hover {
 	-moz-box-shadow: 0 3px 3px 0 rgb(12, 12, 12); 
     box-shadow: 0 3px 3px 0 rgb(12, 12, 12);
 }
+input[type="button"] {
+    font-size: 1em;
+    color: #fff;
+    background: #ed143d;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 1em;
+    -webkit-appearance: none;
+    width: 100%;
+    margin: 3em 0;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    transition: .5s all;
+}
+input[type="button"]:hover {
+    background: #1abc9c;
+    -webkit-transform: translateY(8px);
+    -ms-transform: translateY(8px);
+    -o-transform: translateY(8px);
+    -ms-transform: translateY(8px);
+    transform: translateY(8px);
+    -webkit-box-shadow: 0 3px 3px 0 rgb(12, 12, 12);
+    -moz-box-shadow: 0 3px 3px 0 rgb(12, 12, 12); 
+    box-shadow: 0 3px 3px 0 rgb(12, 12, 12);
+}
 .agileits-top p {
     font-size: 1.1em;
     color: #fff; 
@@ -147,28 +182,7 @@ input[type="submit"]:hover {
 .agileits-top p a:hover{
     color: #1abc9c; 
 }
-/*--copyright--*/
-.copyright {
-    margin: 2em 0 1em;
-    text-align: center;
-}
-.copyright p {
-    font-size: 1em;
-    color: #fff;
-	line-height:1.8em;
-}
-.copyright p a{
-    color: #fff;
-}
-.copyright p a:hover{
-    color: #000;
-	transition: 0.5s all;
-	-webkit-transition: 0.5s all;
-	-moz-transition: 0.5s all;
-	-o-transition: 0.5s all;
-	-ms-transition: 0.5s all;
-}
-/*--//copyright--*/
+
 /*--//main--*/
 /*-- responsive-design --*/
 @media(max-width:1440px){
