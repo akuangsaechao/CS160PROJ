@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-//var History = mongoose.model('History');
+var AvailableDriver = mongoose.model('AvailableDriver');
 
 module.exports.makeDriverAvailable = function(req, res) {
 
@@ -9,9 +9,17 @@ module.exports.makeDriverAvailable = function(req, res) {
     });
   } else {
 
-      // Look for available driver
+    var availableDriver = new AvailableDriver();
 
-      // If not return no drivers available
+    availableDriver.driverName = req.body.driverName;
+    availableDriver.driverLongitude = req.body.driverLongitude;
+    availableDriver.driverLatitude = req.body.driverLatitude;
+    availableDriver.save(function(err) {
+      res.status(200);
+      res.json({
+        "message" : "You are available"
+      });
+    });  
 
   }
 
@@ -25,8 +33,27 @@ module.exports.makeDriverUnavailable = function(req, res) {
     });
   } else {
 
-      // Look for available requests for driver
+    AvailableDriver.remove({ driverName: req.body.driverName }, function (err, result) {
 
+      if (err) { 
+        res.status(404).json(err);
+        return;
+      }
+
+      // Available Driver Found
+      if (result) {
+        res.status(200);
+        res.json({
+          "message" : "You are unavailable"
+        });
+      }
+
+      // No Available Driver Found
+      if (request === null) {
+        res.status(401).json({ "message" : "You are not available"});
+      } 
+
+    });
   }
 
 };
@@ -39,8 +66,32 @@ module.exports.updateDriverLocation = function(req, res) {
     });
   } else {
 
-      // Look for available requests for driver
+    AvailableDriver.update({ driverName: req.body.driverName }, function (err, availableDriver) {
 
+      if (err) { 
+        res.status(404).json(err);
+        return;
+      }
+
+      // Available Driver Found
+      if (availableDriver) {
+        var driver = availableDriver
+        driver.driverLongitude = req.body.driverLongitude;
+        driver.driverLatitude = req.body.driverLatitude;
+        driver.save(function(err) {
+          res.status(200);
+          res.json({
+            "message" : "Location Updated"
+          });
+        });  
+      }
+
+      // No Available Driver Found
+      if (request === null) {
+        res.status(401).json({ "message" : "You are not available"});
+      } 
+
+    });
   }
 
 };

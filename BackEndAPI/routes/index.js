@@ -10,7 +10,7 @@ var auth = jwt({
 var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
 var ctrlHistory = require('../controllers/historyController');
-var ctrlRideRequest = require('../controllers/rideRequestController');
+var ctrlRideRequest = require('../controllers/riderRequestController');
 var ctrlAvailableDrivers = require('../controllers/availableDriversController');
 
 // authentication

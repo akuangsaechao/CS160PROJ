@@ -9,11 +9,19 @@ var riderRequestSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  riderLongitute: {
+  riderStartLongitute: {
     type: Number,
     required: true
   },
-  riderLatitude: {
+  riderStartLatitude: {
+    type: Number,
+    required: true
+  },
+  riderEndLongitute: {
+    type: Number,
+    required: true
+  },
+  riderEndLatitude: {
     type: Number,
     required: true
   }

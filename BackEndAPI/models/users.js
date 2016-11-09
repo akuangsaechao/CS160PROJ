@@ -28,7 +28,7 @@ var userSchema = new mongoose.Schema({
   driverStatus: {
     type: Boolean,
     required: true
-  }
+  },
   hash: String,
   salt: String
 });

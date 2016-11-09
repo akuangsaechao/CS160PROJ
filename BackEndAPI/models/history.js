@@ -13,12 +13,20 @@ var historySchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  startLocation: {
-    type: String,
+  riderStartLongitute: {
+    type: Number,
     required: true
   },
-  endLocation: {
-    type: String,
+  riderStartLatitude: {
+    type: Number,
+    required: true
+  },
+  riderEndLongitute: {
+    type: Number,
+    required: true
+  },
+  riderEndLatitude: {
+    type: Number,
     required: true
   }
 });

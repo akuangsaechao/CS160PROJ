@@ -49,3 +49,4 @@ process.on('SIGTERM', function() {
 require('./users');
 require('./history');
 require('./availableDrivers');
+require('./riderRequest');

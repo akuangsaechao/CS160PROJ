@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
-//var History = mongoose.model('History');
+var History = mongoose.model('History');
+var AvailableDriver = mongoose.model('AvailableDriver');
+var RiderRequest = mongoose.model('RiderRequest');
 
 module.exports.findAvailableDriver = function(req, res) {
 
@@ -9,12 +11,37 @@ module.exports.findAvailableDriver = function(req, res) {
     });
   } else {
 
-      // Look for available driver
+    AvailableDriver.findOne({ username: req.body.username }, function (err, availableDriver) {
 
-      // If not return no drivers available
+      if (err) { 
+        res.status(404).json(err);
+        return;
+      }
 
-      // If a driver is available then add driver and rider location
+      // Available Driver Found
+      if (availableDriver) {
 
+        var riderRequest = new RiderRequest();
+        riderRequest.driverName = availableDriver.driverName;
+        riderRequest.riderName = req.body.riderName;
+        riderRequest.riderStartLongitute = req.body.riderStartLongitute;
+        riderRequest.riderStartLatitude = req.body.riderStartLatitude;
+        riderRequest.riderEndLongitute = req.body.riderEndLongitute;
+        riderRequest.riderEndLatitude = req.body.riderEndLatitude;
+        riderRequest.save(function(err) {
+          res.status(200);
+          res.json({
+            "message" : "Your request has been made. Please Wait"
+          });
+        });   
+      }
+
+      // No Available Driver Found
+      if (availableDriver === null) {
+        res.status(401).json({ "message" : "No available drivers"});
+      } 
+
+    });
   }
 
 };
@@ -27,8 +54,25 @@ module.exports.checkRiderRequest = function(req, res) {
     });
   } else {
 
-      // Look for available requests for driver where driver usernames are true
+    RiderRequest.find({ driverName: req.body.driverName }, function (err, request) {
 
+      if (err) { 
+        res.status(404).json(err);
+        return;
+      }
+
+      // Available Driver Found
+      if (request) {
+        res.status(200);
+        res.json(request);
+      }
+
+      // No Available Driver Found
+      if (request === null) {
+        res.status(401).json({ "message" : "No request for you"});
+      } 
+
+    });
   }
 
 };
@@ -41,8 +85,51 @@ module.exports.completeRiderRequest = function(req, res) {
     });
   } else {
 
-      // Delete request after completion
+    RiderRequest.find({ driverName: req.body.driverName }, function (err, request) {
 
+      if (err) { 
+        res.status(404).json(err);
+        return;
+      }
+
+      // Available Driver Found
+      if (request) {
+
+        var history = new History();
+
+        history.riderName = request.riderName;
+        history.driverName = request.driverName;
+        history.riderStartLongitute = request.riderStartLongitute;
+        history.riderStartLatitude = request.riderStartLatitude;
+        history.riderEndLongitute = request.riderEndLongitute;
+        history.riderStartLatitude = request.riderEndLatitude;
+        history.dateOfRide = req.body.dateOfRide;
+
+        AvailableDriver.remove({ driverName: req.body.driverName }, function (err, result) {
+
+          if (err) { 
+            res.status(404).json(err);
+            return;
+          }
+
+          // Available Driver Found
+          if (result) {
+            res.status(200);
+            res.json({
+              "message" : "Ride Completed"
+            });
+          }
+
+        });
+
+      }
+
+      // No Available Driver Found
+      if (request === null) {
+        res.status(401).json({ "message" : "No request for you"});
+      } 
+
+    });
   }
 
 };
