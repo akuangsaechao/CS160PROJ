@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<!-- If IE use the latest rendering engine -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+<!-- Set the page to the width of the device and set the zoon level -->
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+
+<title> Let It Ride Login Page </title>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://bootswatch.com/slate/bootstrap.min.css" />
+    <script src="script.js"></script>
+
+</head>
+
+
+<body>
+	<div class="container">
+
+
+
+<!-- .navbar-fixed-top, or .navbar-fixed-bottom can be added to keep the nav bar fixed on the screen -->
+<nav class="navbar navbar-fixed-top">
+  <div class="container-fluid">
+ 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+ 
+      <!-- Button that toggles the navbar on and off on small screens -->
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+ 
+      <!-- Hides information from screen readers -->
+        <span class="sr-only"></span>
+ 
+        <!-- Draws 3 bars in navbar button when in small mode -->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+ 
+      <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
+      <a class="pull-left glyphicon glyphicon-road hidden-xs" href="index.html"></a>
+    </div>
+ 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">About</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Email</a></li>
+            <li><a href="#">Phone</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Set Appointment</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Let's Ride <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Customer Login</a></li>
+            <li><a href="#">Driver Login</a></li>
+            <li><a href="#">Customer Sign-Up</a></li>
+            <li><a href="#">Driver Sign-UP </a></li>
+
+
+            <li role="separator" class="divider"></li>
+            
+          </ul>
+        </li>
+      </ul>
+
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+	</div>
+
+<p>
+<div class = "page-header">
+<h1> THIS IS THE CCUSTOMER LOGIN PAGE...HOPEFULLY</h1>
+</div>
+</p>
+
+
+
+<div class="main" ng-controller="loginCtrl">
+    <h1>Let It Ride</h1>
+    <div class="main-row">
+      <div class="agileits-top"> 
+        <form ng-submit="submit()" method="post" id="myLogin"> 
+          <input class="text" type="text" name="Username" ng-model="username" placeholder="Username" required>
+          <input class="text" type="password" name="password" ng-model="password" placeholder="Password" required>
+          <input type="submit" value="LOGIN">
+        </form>
+        <p><a href="" ng-click="signup()"> Not Signed Up?</a></p>
+      </div>   
+    </div>  
+  </div>  
+
+
+
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+
+</html>
