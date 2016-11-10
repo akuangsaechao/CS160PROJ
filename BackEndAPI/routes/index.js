@@ -26,7 +26,7 @@ router.get('/history', auth, ctrlHistory.historyRead);
 
 // ride request
 router.get('/request', auth, ctrlRideRequest.checkRiderRequest);
-router.get('/request', auth, ctrlRideRequest.findAvailbleDriver);
+router.get('/request', auth, ctrlRideRequest.findAvailableDriver);
 router.delete('/request', auth, ctrlRideRequest.completeRiderRequest); // When ride is complete delete request and add to history
 
 // available drivers
