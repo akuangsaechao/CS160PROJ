@@ -17,6 +17,8 @@ var ctrlAvailableDrivers = require('../controllers/availableDriversController');
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login); //Add driver if driver status is true using function below
 
+
+//auth is token that can get from login or register
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
 router.put('/profile', auth, ctrlProfile.profileEdit);

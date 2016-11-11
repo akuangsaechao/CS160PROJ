@@ -1,6 +1,7 @@
-app.controller('loginCtrl', function($scope, $location, $rootScope) {
+app.controller('loginCtrl', function($scope, $location, $rootScope, authentication) {
 	$scope.submit = function() {
 		if($scope.username == 'admin' && $scope.password == 'admin') { //THIS IS WHERE BACKEND CHECKING REPLACES
+			
 			$rootScope.loggedIn = true;
 			$location.path('/dashboard');
 		} else {

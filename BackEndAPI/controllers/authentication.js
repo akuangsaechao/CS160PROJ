@@ -19,7 +19,7 @@ module.exports.register = function(req, res) {
 
     // Return if user not found in database
     if (user === null) {
-      console.log("User not found");
+      console.log("User not found!!!");
       var user = new User();
 
       user.username = req.body.username;
@@ -72,3 +72,4 @@ module.exports.login = function(req, res) {
   })(req, res);
 
 };
+//mongo
