@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var AvailableDriver = mongoose.model('AvailableDriver');
+var User = mongoose.model('User');
 
 module.exports.makeDriverAvailable = function(req, res) {
 
@@ -9,17 +10,30 @@ module.exports.makeDriverAvailable = function(req, res) {
     });
   } else {
 
-    var availableDriver = new AvailableDriver();
+      User
+      .findById(req.payload._id)
+      .exec(function(err, user) {
 
-    availableDriver.driverName = req.body.driverName;
-    availableDriver.driverLongitude = req.body.driverLongitude;
-    availableDriver.driverLatitude = req.body.driverLatitude;
-    availableDriver.save(function(err) {
-      res.status(200);
-      res.json({
-        "message" : "You are available"
-      });
-    });  
+        if (err){
+          res.status(404).json(err);
+          return;
+        }
+
+        if (user.driverStatus == true){
+          var availableDriver = new AvailableDriver();
+
+          availableDriver.driverName = user.username;
+          availableDriver.driverLongitude = req.body.driverLongitude;
+          availableDriver.driverLatitude = req.body.driverLatitude;
+          availableDriver.save(function(err) {
+            res.status(200);
+            res.json({
+              "message" : "You are available"
+            });
+          }); 
+        }  
+
+      }); 
 
   }
 
@@ -33,27 +47,42 @@ module.exports.makeDriverUnavailable = function(req, res) {
     });
   } else {
 
-    AvailableDriver.remove({ driverName: req.body.driverName }, function (err, result) {
+      User
+      .findById(req.payload._id)
+      .exec(function(err, user) {
 
-      if (err) { 
-        res.status(404).json(err);
-        return;
-      }
+        if (err){
+          res.status(404).json(err);
+          return;
+        }
 
-      // Available Driver Found
-      if (result) {
-        res.status(200);
-        res.json({
-          "message" : "You are unavailable"
-        });
-      }
+        if (user.driverStatus == true){
 
-      // No Available Driver Found
-      if (request === null) {
-        res.status(401).json({ "message" : "You are not available"});
-      } 
+          AvailableDriver.remove({ driverName: req.body.driverName }, function (err, result) {
 
-    });
+            if (err) { 
+              res.status(404).json(err);
+              return;
+            }
+
+            // Available Driver Found
+            if (result) {
+              res.status(200);
+              res.json({
+                "message" : "You are unavailable"
+              });
+            }
+
+            // No Available Driver Found
+            if (request === null) {
+              res.status(401).json({ "message" : "You are not available"});
+            } 
+
+          });
+        }  
+
+      }); 
+
   }
 
 };
@@ -66,32 +95,48 @@ module.exports.updateDriverLocation = function(req, res) {
     });
   } else {
 
-    AvailableDriver.update({ driverName: req.body.driverName }, function (err, availableDriver) {
+      User
+      .findById(req.payload._id)
+      .exec(function(err, user) {
 
-      if (err) { 
-        res.status(404).json(err);
-        return;
-      }
+        if (err){
+          res.status(404).json(err);
+          return;
+        }
 
-      // Available Driver Found
-      if (availableDriver) {
-        var driver = availableDriver
-        driver.driverLongitude = req.body.driverLongitude;
-        driver.driverLatitude = req.body.driverLatitude;
-        driver.save(function(err) {
-          res.status(200);
-          res.json({
-            "message" : "Location Updated"
+        if (user.driverStatus == true){
+
+          AvailableDriver.update({ driverName: user.username }, function (err, availableDriver) {
+
+            if (err) { 
+              res.status(404).json(err);
+              return;
+            }
+
+            // Available Driver Found
+            if (availableDriver) {
+              var driver = availableDriver
+              driver.driverLongitude = req.body.driverLongitude;
+              driver.driverLatitude = req.body.driverLatitude;
+              driver.save(function(err) {
+                res.status(200);
+                res.json({
+                  "message" : "Location Updated"
+                });
+              });  
+            }
+
+            // No Available Driver Found
+            if (request === null) {
+              res.status(401).json({ "message" : "You are not available"});
+            } 
+
           });
-        });  
-      }
 
-      // No Available Driver Found
-      if (request === null) {
-        res.status(401).json({ "message" : "You are not available"});
-      } 
+        }  
 
-    });
+      }); 
+
   }
 
 };

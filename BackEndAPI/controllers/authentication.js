@@ -7,21 +7,22 @@ module.exports.register = function(req, res) {
 
   User.findOne({ username: req.body.username }, function (err, user) {
 
-    console.log(user);
     if (err) { 
       res.status(404).json(err);
       return;
     }
+
     if (user) {
-      console.log("User found");
       res.status(401).json({ "message" : "User already exists"});
     }
 
     // Return if user not found in database
     if (user === null) {
+<<<<<<< Updated upstream
       console.log("User not found!!!");
+=======
+>>>>>>> Stashed changes
       var user = new User();
-
       user.username = req.body.username;
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
@@ -54,13 +55,6 @@ module.exports.login = function(req, res) {
     // If a user is found
     if(user){
       token = user.generateJwt();
-      //if(user.driverStatus){
-      //  var addDriver = new AvailableDriver();
-      //  addDriver.driverName = user.username;
-      //  addDriver.driverLongitute = req.driverLongitute;
-      //  addDriver.driverLatitude = req.driverLatitude
-      //  addDriver.save();
-      //}
       res.status(200);
       res.json({
         "token" : token

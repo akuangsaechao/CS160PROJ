@@ -11,7 +11,7 @@ module.exports.findAvailableDriver = function(req, res) {
     });
   } else {
 
-    AvailableDriver.findOne({ username: req.body.username }, function (err, availableDriver) {
+    AvailableDriver.find({ username: req.payload.username }, function (err, availableDriver) {
 
       if (err) { 
         res.status(404).json(err);
@@ -42,6 +42,7 @@ module.exports.findAvailableDriver = function(req, res) {
       } 
 
     });
+
   }
 
 };
@@ -54,7 +55,7 @@ module.exports.checkRiderRequest = function(req, res) {
     });
   } else {
 
-    RiderRequest.find({ driverName: req.body.driverName }, function (err, request) {
+    RiderRequest.find({ driverName: req.payload.username }, function (err, request) {
 
       if (err) { 
         res.status(404).json(err);
@@ -73,6 +74,7 @@ module.exports.checkRiderRequest = function(req, res) {
       } 
 
     });
+
   }
 
 };
@@ -85,7 +87,7 @@ module.exports.completeRiderRequest = function(req, res) {
     });
   } else {
 
-    RiderRequest.find({ driverName: req.body.driverName }, function (err, request) {
+    RiderRequest.find({ driverName: req.payload.username }, function (err, request) {
 
       if (err) { 
         res.status(404).json(err);
@@ -105,7 +107,7 @@ module.exports.completeRiderRequest = function(req, res) {
         history.riderStartLatitude = request.riderEndLatitude;
         history.dateOfRide = req.body.dateOfRide;
 
-        AvailableDriver.remove({ driverName: req.body.driverName }, function (err, result) {
+        AvailableDriver.remove({ driverName: req.payload.username }, function (err, result) {
 
           if (err) { 
             res.status(404).json(err);
