@@ -18,10 +18,6 @@ module.exports.register = function(req, res) {
 
     // Return if user not found in database
     if (user === null) {
-<<<<<<< Updated upstream
-      console.log("User not found!!!");
-=======
->>>>>>> Stashed changes
       var user = new User();
       user.username = req.body.username;
       user.firstName = req.body.firstName;
