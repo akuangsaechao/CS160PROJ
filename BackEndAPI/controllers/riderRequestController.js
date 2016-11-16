@@ -23,7 +23,7 @@ module.exports.findAvailableDriver = function(req, res) {
 
         var distances = [];
 
-        for (availableDriver : AvailableDriver drivers){
+        for each (var drivers in availableDriver){
 
           var R = 6371e3; // metres
           var driverLatitude = drivers.driverLatitude.toRadians();
