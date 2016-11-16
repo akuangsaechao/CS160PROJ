@@ -52,6 +52,7 @@ userSchema.methods.generateJwt = function() {
     username: this.username,
     firstname: this.firstName,
     lastName: this.lastName,
+    driverStatus: this.driverStatus,
     exp: parseInt(expiry.getTime() / 1000),
   }, config.secret); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };

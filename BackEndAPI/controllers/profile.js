@@ -30,17 +30,16 @@ module.exports.profileEdit = function(req, res) {
       .findById(req.payload._id)
       .exec(function(err, user) {
 
-        var user = new User();
+        var updatedUser = user;
 
-        user.username = req.body.username;
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName;
-        user.phoneNumber = req.body.phoneNumber;
-        user.creditCard = req.body.creditCard;
-        user.setPassword(req.body.password);
-        user.save(function(err) {
-          var token;
-          token = user.generateJwt();
+        updatedUser.username = req.body.username;
+        updatedUser.firstName = req.body.firstName;
+        updatedUser.lastName = req.body.lastName;
+        updatedUser.phoneNumber = req.body.phoneNumber;
+        updatedUser.creditCard = req.body.creditCard;
+        updatedUser.setPassword(req.body.password);
+        updatedUser.save(function(err) {
+          var token = updatedUser.generateJwt();
           res.status(200);
           res.json({
             "token" : token,
