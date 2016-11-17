@@ -30,7 +30,8 @@ module.exports.register = function(req, res) {
         var token = user.generateJwt();
         res.status(200);
         res.json({
-          "token" : token
+          "token" : token,
+          driverStatus: user.driverStatus
         });
       });   
     } 
@@ -53,7 +54,8 @@ module.exports.login = function(req, res) {
       token = user.generateJwt();
       res.status(200);
       res.json({
-        "token" : token
+        "token" : token,
+        driverStatus: user.driverStatus
       });
     } else {
       // If user is not found

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app lang="en">
 
 <head>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
 
 <meta charset="UTF-8">
 <!-- If IE use the latest rendering engine -->
@@ -10,7 +13,7 @@
 <!-- Set the page to the width of the device and set the zoon level -->
 <meta name="viewport" content="width = device-width, initial-scale = 1">
 
-<title> Let It Ride </title>
+<title> Let It Ride Customer Login</title>
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -22,17 +25,20 @@
 
 <body>
 
-
+<br>
 <div class = "page-header">
-<h1> Welcome To Let It Ride </h1>
+
+
+
 </div>
+</br>
 
 
 
 	<div class="container">
 
 <!-- .navbar-fixed-top, or .navbar-fixed-bottom can be added to keep the nav bar fixed on the screen -->
-<nav class="navbar navbar-fixed-top">
+<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
   <div class="container-fluid">
  
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -58,16 +64,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">About</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact Us <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Email</a></li>
-            <li><a href="#">Phone</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Set Appointment</a></li>
-          </ul>
-        </li>
+        
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -98,63 +95,15 @@
 
 
 
-<form class="form-horizontal navbar-right">
+<form class="form-horizontal navbar">
   <fieldset>
-    <legend><h1> Customer Sign Up </h1>
+    <legend><h2> Congratulations! </h2>
 </legend>
     
-<div class="main" ng-controller="signupCtrl">
-  <form method="post" class="col-sm-offset-0 col-sm-6" id="mySignup" ng-submit="submit()">
-			<div class="main-row">
-			<div class="agileits-top"> 
-			<!-- //REMEMBER TO CHECK FOR EXISTING ACCOUNT INFO -->
-    <p><label> Username: <br/></label>
-	<input class="text" type="text" name="username" id="username" ng-model="username" placeholder="Username" required></p>
-        <p><label> Password: <br/></label>
+    <p> Your Account Has Been Created! </p>
 
-	<input class="text" type="password" name="password" ng-model="password" placeholder="Password" required>
-    </p>
-    <p>
-        <label> Retype Password: <br/></label>
-
-	<input class="text" type="password" name="password2" ng-model="password2" placeholder="Re-enter Password" required>
-    </p>
-    <p>
-        <label> Phone Number: <br/></label>
-
-	<input class="text" type="text" name="phone" ng-model="phone" placeholder="Phone Number:" required>
-    </p>
-     <p>   
-        <label> Email Address: <br/></label>
-
-	<input class="text" type="text" name="email" ng-model="email" placeholder="Email Address:" required>
-    </p>
-    <p>
-       <label> Payment Method: <br/>
-       </label>
-</p>
-
-
-<p>
-    <input type="radio" name="Debit Card" id="radio" value="radio">
-    <label for="Debit Card">Debit Card </label>
-    </p>
-<p>
-  <input type="radio" name="Credit Card" id="radio2" value="radio">
-  <label for="Debit Card">Credit Card </label>
-</p>
-    
-    <p>
-  <input type="submit" formaction="Account-Creation-Confirmation.html" value="SUBMIT">
-</p>
 </form>
-</div>
-</div>
-</div>
-
-
-
-    
+  
   </fieldset>
 </form>
 

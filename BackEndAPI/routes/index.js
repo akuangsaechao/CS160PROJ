@@ -24,7 +24,9 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 router.put('/profile', auth, ctrlProfile.profileEdit);
 
 // history
-router.get('/history', auth, ctrlHistory.historyRead);
+router.get('/riderHistory', auth, ctrlHistory.riderHistoryRead);
+router.get('/driverHistory', auth, ctrlHistory.driverHistoryRead);
+
 
 // ride request
 router.get('/request', auth, ctrlRideRequest.checkRiderRequest);
