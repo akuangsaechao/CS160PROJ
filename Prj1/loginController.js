@@ -1,10 +1,18 @@
 app.controller('loginCtrl', function($scope, $location, $rootScope, authentication) {
-	$scope.submit = function() {
+	$scope.submit = function(){
+		$rootScope.username = $scope.username;
 		var user = {
 			"username" : $scope.username,
 			"password" : $scope.password
 		};
-		authentication.login(user).error(function(err){
+		//calling serverCaller.js
+		authentication.login(user);
+		$rootScope.loggedIn = true;
+		//link to the dashboard
+		$location.path('/dashboard');
+
+
+		/*authentication.login(user).error(function(err){
 			console.log("error");
 			alert("Username or Password is incorrect");
 		}).then(function(){
@@ -17,7 +25,7 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, authenticati
 				$location.path('/dashboard');
 				console.log("driver Status not true");
 			}
-		});
+		});*/
 
 	};
 	// then(function(){
