@@ -13,6 +13,7 @@ app.controller('signupCtrl', function($scope, $location, $rootScope, authenticat
 				"password" : $scope.password
 				};
 			console.log(user);
+			//calling serviceCaller.js
 			authentication.register(user);
 			$rootScope.loggedIn = true;
 			alert("Thank you for signing up!");

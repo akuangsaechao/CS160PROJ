@@ -7,8 +7,17 @@ app.controller('requestCtrl',function ($scope, $location, $rootScope) {
         $location.path('/dashboard');  
     }
     $scope.submit = function() {
-        $location.path('/dest');
-    }
+        console.log("username: " + $rootScope.username);
+        console.log("startLng: " + $scope.currentPos.lng);
+        console.log("startLat: " + $scope.currentPos.lat );
+        //authenticate.riderRequest();
+        var requestData = {
+            username: $scope.username,
+            startLng: $scope.currentPos.lng,
+            startLat: $scope.currentPos.lat
+        };
+        $location.path('/dest').search(requestData);
+    };
 
     $scope.success = function(position){
         //console.log("in success");

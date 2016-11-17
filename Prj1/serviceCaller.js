@@ -107,20 +107,26 @@
                 console.log("available driver");
             });//http
         };//available driver
-        riderRequest = function(){
-            var requestInfo = {
+        riderRequest = function(requestInfo){
+           /* var request = {
                 //data for reid-request
-                riderName: username,
-                riderStartLatitude: $rootScope.currentPos.lat,
-                riderStartLongitude: $rootScope.currentPos.lng,
-                riderEndLatitude: $rootScope.destPos.lat,
+                riderName: requestInfo.username,
+                riderStartLatitude: requestInfo.startLat,
+                riderStartLongitude: requestInfo.startLng.lng,
+                riderEndLatitude: requestInfo.riderEndLatitude,
                 riderEndLongitude: $rootScope.destPos.lng
-            };
+            };*/
+            console.log("request Info" + JSON.stringify(requestInfo));
             return $http({
                 method: "POST", 
-                url: "http://localhost:3000/api/reiderRequestController",
+                url: "http://localhost:3000/api/driver",
                 data: $httpParamSerializerJQLike(requestInfo),
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                console.log("SUCCESS in rider request");
+                console.log(JSON.stringify(data));
+            }).error(function(data){
+                console.log("BAD request");
             });//$http
             
         }
@@ -133,7 +139,9 @@
             isLoggedIn : isLoggedIn,
             register : register,
             login : login,
-            logout : logout
+            logout : logout,
+            availableDriver: availableDriver,
+            riderRequest: riderRequest
         };
         
         
