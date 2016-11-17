@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
 	.when('/dashboard', {
 		resolve: {
 			"check": function($location, $rootScope) {
-				if(!$rootScope.driverIn) {
+				if(!$rootScope.loggedIn) {
 					$location.path('/');
 				}
 			}
