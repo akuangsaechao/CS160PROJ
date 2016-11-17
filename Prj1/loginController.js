@@ -1,12 +1,14 @@
 app.controller('loginCtrl', function($scope, $location, $rootScope, authentication) {
 	$scope.submit = function() {
-		if($scope.username == 'admin' && $scope.password == 'admin') { //THIS IS WHERE BACKEND CHECKING REPLACES
-			
+		var user = {
+			"username" : $scope.username,
+			"password" : $scope.password
+		};
+		authentication.login(user);
+		
+		
 			$rootScope.loggedIn = true;
 			$location.path('/dashboard');
-		} else {
-			alert("Username or Password is incorrect");
-		};
 	};
 	$scope.signup = function() {
 		$location.path('/signup');	
