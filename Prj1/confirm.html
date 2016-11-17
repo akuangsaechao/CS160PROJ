@@ -1,0 +1,63 @@
+<style type="text/css">
+    #map{
+    position: relative;
+    height: 100%;
+    min-height:500px;
+    width: 100%;
+    min-width:100px;
+    box-shadow: 3px 3px 10px gray;
+    float: middle;
+    border: 1px solid red;
+}
+#repeat{
+    display: inline;
+}
+#country_container {
+    width: 1000px;
+    margin: 13px 3px 3px 0px;
+    text-align: center;
+    width: 85px;
+    padding: 4px;
+    display: inline-table;
+    color: white;
+    background-color: black;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius:13px;
+}
+#country_container:hover {
+    box-shadow: 0px 0px 10px black;
+    background-color: gray;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+#names {
+    cursor: pointer;
+}
+</style>
+<body>
+<div class="main" ng-controller="confirmCtrl">
+    <h1>Let It Ride</h1>
+    <div class="main-row">
+        <h2>Here is your estimated route.</h2>
+        <div class="agileits-top"> 
+            <div style="width: 100%;">
+                <div id="map" style="width: 50%; height: 500px; float: left;"></div>
+                <div id="panel" style="width: 48%; float: right;">
+                    <h2> This route takes you a total distance of 
+                    <input id="dist" type="text" style="margin: 0 0 0; padding: none; align-content:middle;" readonly> <br>
+                    We charge a flat rate of $5 per 10km. <br>
+                    This brings your total charge to 
+                    <input id="price" type="text" style="margin: 0 0 0; padding: none; align-content:middle;" readonly> <br> 
+                    Cash is given directly to the driver once your ride is over.</h2>
+                </div>
+            </div>
+            <form ng-submit="submit()" method="post" id="myLogin"> 
+                <input type="submit" value="Request a Driver">
+            </form>
+            </div> 
+        </div>
+    </div>
+</div>
+</body>

@@ -3,14 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title> Basic Login </title>
-	<link rel="stylesheet" type = "text/css" href = "style.css" media = " all" />
+
 	<link href='//fonts.googleapis.com/css?family=Dosis:400,300,200,500,600,700,800' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+	<link rel="stylesheet" type = "text/css" href = "style.css" media = " all" />
+
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-touch.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en&key=AIzaSyCCylp7-GCvkEn4ZYWTtGiGVeMdBAuT_bw&libraries=places" ></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="angular-route.min.js"></script>
+	<script src="ui-bootstrap-tpls-2.2.0.min.js"></script>
 	<script src="app.js"></script>
 	<script src="dashboard.js"></script>
+	<script src="startController.js"></script>
 	<script src="historyController.js"></script>
 	<script src="accountController.js"></script>
 	<script src="loginController.js"></script>
@@ -19,9 +31,38 @@
 	<script src="waitingController.js"></script>
 	<script src="driverController.js"></script>
 	<script src="destController.js"></script>
+	<script src="confirmController.js"></script>
+	<script src="driver/driverDashController.js"></script>
 	<script src="serviceCaller.js"></script>
 </head>
 <body ng-app="mainApp">
+	<div class="navbar navbar-inverse" ng-controller="NavBarCtrl">
+		<div class="navbar-inner">
+			<div class="container" ng-hide="!loggedIn">
+				<button class="btn btn-navbar" ng-click="isCollapsed = !isCollapsed"> <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="nav-collapse" collapse="isCollapsed">
+					<ul class="nav">
+					<li><a href="#/dashboard"><i class="icon-home icon-white"></i> Dashboard</a>
+						</li>
+						<li><a href="#/account">My Account</a>
+						</li>
+						<li><a href="#/request">Request a Ride</a>
+
+						</li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a href="#/class" ng-click="logout()"><i class="icon-off icon-white"></i> Logout</a>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+		<!-- /navbar-inner -->
+	</div>
 	<div ng-view></div>
 </body>
 </html>

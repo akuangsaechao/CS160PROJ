@@ -7,7 +7,8 @@ app.controller('destCtrl',function ($scope, $location, $rootScope) {
         $location.path('/dashboard');  
     }
     $scope.submit = function() {
-        $location.path('/waiting');
+
+        $location.path('/confirm');
     }
 
     $scope.success = function(position){
@@ -30,6 +31,13 @@ app.controller('destCtrl',function ($scope, $location, $rootScope) {
         $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
         var infoWindow = new google.maps.InfoWindow();
+
+        //set Customer marker
+        var marker2 = new google.maps.Marker({
+            map: $scope.map,
+            position: $rootScope.currentPos
+            //position: {lat: rootScope.lat, lng: rootScope.long }
+        });
 
         //set initial marker
         var marker = new google.maps.Marker({

@@ -5,7 +5,7 @@
 
     app.service('authentication', authentication);
 
-    authentication.$inject = ['$http', '$window', '$httpParamSerializerJQLike', '$rootScope'];
+    authentication.$inject = ['$http', '$window', '$httpParamSerializerJQLike'];
     function authentication ($http, $window, $httpParamSerializerJQLike) {
 
 
@@ -52,7 +52,6 @@
                 data: $httpParamSerializerJQLike(user),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function(data){
-                console.log("Register Success");
                 saveToken(data.token);
             });
         };
@@ -60,71 +59,14 @@
 
 
         login = function(user) {
-            return $http({
-               method: 'POST',
-                url: "http://localhost:3000/api/login",
-                data: $httpParamSerializerJQLike(user),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).success(function (data) {
-                console.log("Login Success");
+            return $http.post('/api/login', user).success(function(data) {
                 saveToken(data.token);
             });
-
-
-            /*return $http.post('/api/login', user).success(function(data) {
-                saveToken(data.token);
-            });*/
         };
 
         logout = function() {
             $window.localStorage.removeItem('mean-token');
         };
-        profile = function(user) {
-            
-            return $http({
-                method: 'POST',
-                url: "http://localhost:3000/api/profile",
-                data: $httpParamSerializerJQLike(user),
-                headers:{'Content-Type' : 'application/x-www-form-urlencoded'},
-                
-
-            }).success(function(data){
-                saveToken(data.token);
-
-            });
-        };
-        availableDriver = function(user) {
-            return $http({
-                method: 'POST',
-                url: "http://localhost:3000/api/availableDriver",
-                data: $httpParamSerializerJQLike(user),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                //data for finding available Driver
-                username: user.username,
-                driverLatitude: user.latitude,
-                driverLongitude: user.longitude
-            }).success(function(data){
-                console.log("available driver");
-            });//http
-        };//available driver
-        riderRequest = function(){
-            var requestInfo = {
-                //data for reid-request
-                riderName: username,
-                riderStartLatitude: $rootScope.currentPos.lat,
-                riderStartLongitude: $rootScope.currentPos.lng,
-                riderEndLatitude: $rootScope.destPos.lat,
-                riderEndLongitude: $rootScope.destPos.lng
-            };
-            return $http({
-                method: "POST", 
-                url: "http://localhost:3000/api/reiderRequestController",
-                data: $httpParamSerializerJQLike(requestInfo),
-                headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            });//$http
-            
-        }
-
 
         return {
             currentUser : currentUser,
@@ -135,12 +77,6 @@
             login : login,
             logout : logout
         };
-        
-        
-               
-               
-                
-        
     }//authentication
 
 

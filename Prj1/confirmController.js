@@ -1,5 +1,5 @@
-app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
-
+app.controller('confirmCtrl',function ($scope, $location, $rootScope) {
+    $scope.dist = "";
     var drivers = [
     {
         city : 'Driver was here!',
@@ -9,9 +9,6 @@ app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
     }
     ];
 
-    $scope.driver = function() {
-        $location.path('/driver');  
-    }
     $scope.return = function() {
         $location.path('/dashboard');  
     }
@@ -25,8 +22,6 @@ app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
         var directionsService = new google.maps.DirectionsService();
         var directionsDisplay = new google.maps.DirectionsRenderer();
         $scope.markers = [];
-        //get current positions
-
         var mapOptions = {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
@@ -41,16 +36,9 @@ app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
         var marker = new google.maps.Marker({
             map: $scope.map,
             position: $rootScope.currentPos
+            //position: {lat: rootScope.lat, lng: rootScope.long }
         });
         fullBounds.extend( marker.getPosition() );
-        //Set Driver Marker
-        var marker2 = new google.maps.Marker({
-            map: $scope.map,
-            position: {lat: drivers[0].lat, lng: drivers[0].long },
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-        });
-        fullBounds.extend( marker2.getPosition() );
-        map.fitBounds( fullBounds );
 
         var marker3 = new google.maps.Marker({
             map: $scope.map,
@@ -59,18 +47,12 @@ app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
         });
         fullBounds.extend( marker3.getPosition() );
         map.fitBounds( fullBounds );
+        //Set up driving directions
         directionsDisplay.setMap(map);
-
-        
-        var waypts = [];
-        waypts.push({
-            location: marker.position,
-            stopover: true
-        });
+        // directionsDisplay.setPanel(document.getElementById('panel'));
 
         var request = {
-            origin: marker2.getPosition(),
-            waypoints: waypts,
+            origin: marker.getPosition(),
             destination: marker3.getPosition(),
             travelMode: google.maps.DirectionsTravelMode.DRIVING
         };
@@ -78,16 +60,42 @@ app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
             if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
             }
-        })
+        });
         $scope.openInfoWindow = function(e, selectedMarker){
             e.preventDefault();
             google.maps.event.trigger(selectedMarker, 'click');
-        }//openInfoWindow
+        }
 
         $(window).resize(function() {
         // (the 'map' here is the result of the created 'var map = ...' above)
         google.maps.event.trigger(map, "resize");
     });
+
+
+        //GET DISTANCE
+        var service = new google.maps.DistanceMatrixService();
+
+        service.getDistanceMatrix(
+        {
+            origins: [marker.getPosition()],
+            destinations: [marker3.getPosition()],
+            travelMode: google.maps.TravelMode.DRIVING,
+            avoidHighways: false,
+            avoidTolls: false
+        }, 
+        callback
+        );
+
+        function callback(response, status) {
+            var dist = document.getElementById("dist");
+            var price = document.getElementById("price");
+            if(status=="OK") {
+                dist.value = response.rows[0].elements[0].distance.text;
+                price.value = "$" + (Math.floor(((parseInt(dist.value, 10)) / 10) + 1) * 5);
+            } else {
+                alert("Error: " + status);
+            }
+        }
     }//success
     //console.log("in controller");
     if (!navigator.geolocation){
@@ -95,14 +103,14 @@ app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
         return;
     }//if
     //console.log("before calling get Current position")
-
     $scope.success();
+
 
 
 
 });//controller
 
-        function err(){
+function err(){
     //console.log("in error function");
     output.innerHTML = "Unable to retrieve your location";
 }
