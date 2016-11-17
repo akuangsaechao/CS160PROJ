@@ -4,32 +4,18 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, authenticati
 			"username" : $scope.username,
 			"password" : $scope.password
 		};
-		authentication.login(user).error(function(err){
-			console.log("error");
-			alert("Username or Password is incorrect");
-		}).then(function(){
+		authentication.login(user).then(
 			if($rootScope.driverStatus === true){
-				$rootScope.driverIn = true;
-				$location.path('/driverDash');
-				console.log("driver Status true");
-			} else {
 				$rootScope.loggedIn = true;
 				$location.path('/dashboard');
-				console.log("driver Status not true");
+			} else {
+				$rootScope.driverIn = true;
+				$location.path('/driverDash');
 			}
-		});
+
+		);
 
 	};
-	// then(function(){
-	// 		if($rootScope.driverStatus === true){
-	// 			$rootScope.loggedIn = true;
-	// 			$location.path('/dashboard');
-	// 		} else {
-	// 			$rootScope.driverIn = true;
-	// 			$location.path('/driverDash');
-	// 		}
-
-	// 	});
 	$scope.signup = function() {
 		$location.path('/signup');	
 	}

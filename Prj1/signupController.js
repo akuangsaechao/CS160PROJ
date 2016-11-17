@@ -9,24 +9,14 @@ app.controller('signupCtrl', function($scope, $location, $rootScope, authenticat
 				"lastName" : $scope.lastname,
 				"phoneNumber":$scope.phone,
 				"creditCard": $scope.credit,
-				"driverStatus": $scope.driverStatus,
+				"driverStatus": true,
 				"password" : $scope.password
 				};
 			console.log(user);
-			authentication.register(user).error(function(err){
-			console.log("error");
-			alert("Username already exists");
-		}).then(function(){
-			if($scope.driverStatus === true){
-				$rootScope.driverIn = true;
-				$location.path('/driverDash');
-				console.log("driver Status true");
-			} else {
-				$rootScope.loggedIn = true;
-				$location.path('/dashboard');
-				console.log("driver Status not true");
-			}
-		});
+			authentication.register(user);
+			$rootScope.loggedIn = true;
+			alert("Thank you for signing up!");
+			$location.path('/dashboard');
 		} else {
 			alert("An account with the username already exists, please enter a different username");
 		};
