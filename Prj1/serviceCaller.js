@@ -61,6 +61,7 @@
 
 
         login = function(user) {
+            
             return $http({
                method: 'POST',
                 url: "http://localhost:3000/api/login",
