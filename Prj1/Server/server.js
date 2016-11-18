@@ -28,7 +28,8 @@ app.use(passport.initialize());
 
 app.use('/api', routesApi);
 
-app.use(function(req, res) {
+app.use(function(req, res){
+    
   res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
 });
 
@@ -63,5 +64,23 @@ app.use(function(err, req, res, next) {
     });
 });
 
+/*var methodOverride = require('method-override');
+app.use(methodOverride());
 
+// ## CORS middleware
+// see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+};*/
+app.use(allowCrossDomain);
 module.exports = app;

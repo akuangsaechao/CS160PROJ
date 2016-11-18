@@ -4,11 +4,11 @@ app.controller('destCtrl',function ($scope, $location, $rootScope) {
         $location.path('/driver');  
     }
     $scope.return = function() {
-        $location.path('/dashboard');  
+        $location.path('/dashboard');
     }
     $scope.submit = function() {
 
-        $location.path('/confirm');
+        $location.path('/confirm').search();
     }
 
     $scope.success = function(position){

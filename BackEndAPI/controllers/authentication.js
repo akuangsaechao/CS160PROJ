@@ -15,10 +15,11 @@ module.exports.register = function(req, res) {
     if (user) {
       res.status(401).json({ "message" : "User already exists"});
     }
-
+    console.log("USER in auth" + JSON.stringify(user));
     // Return if user not found in database
     if (user === null) {
       var user = new User();
+      console.log("req.body : "+ JSON.stringify(req.body));
       user.username = req.body.username;
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
@@ -33,8 +34,9 @@ module.exports.register = function(req, res) {
           "token" : token,
           driverStatus: user.driverStatus
         });
-      });   
-    } 
+      });
+      
+    } //if
   });  
 };
 

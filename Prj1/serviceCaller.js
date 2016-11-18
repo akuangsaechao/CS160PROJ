@@ -5,6 +5,7 @@
 
     app.service('authentication', authentication);
 
+    //what authentication needs:
     authentication.$inject = ['$http', '$window', '$httpParamSerializerJQLike', '$rootScope'];
     function authentication ($http, $window, $httpParamSerializerJQLike, $rootScope) {
 
@@ -57,7 +58,7 @@
             });
         };
 
-//swgwgsgewqgw
+
 
         login = function(user) {
             return $http({
@@ -69,6 +70,8 @@
                 console.log("Register Success");
                 saveToken(data.token);
                 $rootScope.driverStatus = data.driverStatus;
+            }).error(function (err) {
+                console.log(err);
             });
             // .then(
             //     function success(data) {
@@ -103,23 +106,25 @@
             });
         };
         availableDriver = function(user) {
+            //connection to  availableDriverController.js
+            //required Data
+            //data for finding available Driver
+            //username: user.username,
+            //driverLatitude: user.latitude,
+            //driverLongitude: user.longitude
             return $http({
                 method: 'POST',
                 url: "http://localhost:3000/api/availableDriver",
                 data: $httpParamSerializerJQLike(user),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                //data for finding available Driver
-                username: user.username,
-                driverLatitude: user.latitude,
-                driverLongitude: user.longitude
+
             }).success(function(data){
                 console.log("available driver");
             });//http
         };//available driver
         riderRequest = function(){
             var requestInfo = {
-                //data for reid-request
-                riderName: username,
+                //data for reid-requestriderName: username,
                 riderStartLatitude: $rootScope.currentPos.lat,
                 riderStartLongitude: $rootScope.currentPos.lng,
                 riderEndLatitude: $rootScope.destPos.lat,
