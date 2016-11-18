@@ -38,7 +38,7 @@
 
 
 <body ng-app="mainApp">
-	<div class="navbar navbar-inverse" ng-controller="NavBarCtrl">
+	<div class="navbar navbar-fixed-top navbar-inverse" ng-controller="NavBarCtrl">
 		<div class="navbar-inner">
 			<div class="container" ng-hide="!loggedIn">
 				<button class="btn btn-navbar" ng-click="isCollapsed = !isCollapsed"> <span class="icon-bar"></span>
@@ -65,6 +65,49 @@
 		</div>
 		<!-- /navbar-inner -->
 	</div>
+
+	<br></br>
+
 	<div ng-view></div>
+
+
+	
+
+<p><header>Tools Used </header><p>
+<br></br>
+
+<div class="container">
+<div class="row">
+  <div class="col-xs-12 col-md-3">
+    <a  class="thumbnail">
+      <img src="https://www.gaslampmedia.com/media/bootstrap.png" alt="bootstrap">
+    </a>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <a class="thumbnail">
+      <img src="https://risingstack-blog.s3.amazonaws.com/2016/Jun/Node_js_logo_svg-1466683930347.png" alt="NodeJs">
+    </a>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <a class="thumbnail">
+      <img src="https://angularjs.org/img/AngularJS-large.png" alt="angularjs">
+    </a>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <a class="thumbnail">
+      <img src="https://www.seeklogo.net/wp-content/uploads/2015/09/new-google-maps-logo-vector-download.jpg" alt="google maps api">
+    </a>
+  </div>
+  
+</div>
+</div>
+
+<br></br>
+<footer class="footer navbar-fixed-bottom ">
+      <div class="container">
+        <p class="text-muted">© 2016 Let It Ride Tech LL.</p>
+      </div>
+    </footer>
+
 </body>
 </html>
