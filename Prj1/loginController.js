@@ -6,13 +6,13 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, authenticati
 			"password" : $scope.password
 		};
 		//calling serverCaller.js
-		authentication.login(user);
-		$rootScope.loggedIn = true;
-		//link to the dashboard
-		$location.path('/dashboard');
+		// authentication.login(user);
+		// $rootScope.loggedIn = true;
+		// //link to the dashboard
+		// $location.path('/dashboard');
 
 
-		/*authentication.login(user).error(function(err){
+		authentication.login(user).error(function(err){
 			console.log("error");
 			alert("Username or Password is incorrect");
 		}).then(function(){
@@ -25,7 +25,7 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, authenticati
 				$location.path('/dashboard');
 				console.log("driver Status not true");
 			}
-		});*/
+		});
 
 	};
 	// then(function(){
