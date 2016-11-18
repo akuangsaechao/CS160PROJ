@@ -10,6 +10,7 @@ app.controller('requestCtrl',function ($scope, $location, $rootScope) {
         console.log("username: " + $rootScope.username);
         console.log("startLng: " + $scope.currentPos.lng);
         console.log("startLat: " + $scope.currentPos.lat );
+        //format data needed for request a ride 
         var requestData = {
             username: $scope.username,
             startLng: $scope.currentPos.lng,
