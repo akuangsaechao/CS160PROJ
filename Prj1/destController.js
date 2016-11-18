@@ -1,4 +1,4 @@
-app.controller('destCtrl',function ($scope, $location, $rootScope) {
+app.controller('destCtrl',function ($scope, $location, $rootScope, authentication) {
 
     $scope.driver = function() {
         $location.path('/driver');  
@@ -7,8 +7,17 @@ app.controller('destCtrl',function ($scope, $location, $rootScope) {
         $location.path('/dashboard');
     }
     $scope.submit = function() {
-
+        //$location.search() contains query from requestController.js
+        var query = $location.search();
+        console.log("location search: " + JSON.stringify(query));
+        console.log("rider location: " + JSON.stringify($rootScope.destPos));
+        query.riderEndLatitude = $rootScope.destPos.lat;
+        query.riderEndLongitude = $rootScope.destPos.lng;
+        //call riderRequest function in serviceCaller.js
+        authentication.riderRequest(query);
+        //link to confirm
         $location.path('/confirm');
+        //$location.path('/waiting');
     }
 
     $scope.success = function(position){

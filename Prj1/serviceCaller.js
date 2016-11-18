@@ -147,7 +147,8 @@
             isLoggedIn : isLoggedIn,
             register : register,
             login : login,
-            logout : logout
+            logout : logout,
+            riderRequest: riderRequest
         };
         
         
