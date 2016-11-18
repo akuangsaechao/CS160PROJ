@@ -6,11 +6,11 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, authenticati
 			"password" : $scope.password
 		};
 		//calling serverCaller.js
-		 authentication.login(user).success(function(){
+		 authentication.login(user);
 			 $rootScope.loggedIn = true;
 			 // //link to the dashboard
 			 $location.path('/dashboard');
-		 });
+
 
 
 

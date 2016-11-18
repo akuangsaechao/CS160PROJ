@@ -123,14 +123,14 @@
                 console.log("available driver");
             });//http
         };//available driver
-        riderRequest = function(){
-            var requestInfo = {
+        riderRequest = function(requestInfo){
+            /*ar requestInfo = {
                 //data for reid-requestriderName: username,
                 riderStartLatitude: $rootScope.currentPos.lat,
                 riderStartLongitude: $rootScope.currentPos.lng,
                 riderEndLatitude: $rootScope.destPos.lat,
                 riderEndLongitude: $rootScope.destPos.lng
-            };
+            };*/
             return $http({
                 method: "POST", 
                 url: "http://localhost:3000/api/reiderRequestController",
