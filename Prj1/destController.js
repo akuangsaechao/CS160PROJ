@@ -8,7 +8,7 @@ app.controller('destCtrl',function ($scope, $location, $rootScope) {
     }
     $scope.submit = function() {
 
-        $location.path('/confirm').search();
+        $location.path('/confirm');
     }
 
     $scope.success = function(position){

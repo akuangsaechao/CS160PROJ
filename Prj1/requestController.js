@@ -7,8 +7,17 @@ app.controller('requestCtrl',function ($scope, $location, $rootScope) {
         $location.path('/dashboard');  
     }
     $scope.submit = function() {
-        $location.path('/dest');
-    }
+        console.log("username: " + $rootScope.username);
+        console.log("startLng: " + $scope.currentPos.lng);
+        console.log("startLat: " + $scope.currentPos.lat );
+        var requestData = {
+            username: $scope.username,
+            startLng: $scope.currentPos.lng,
+            startLat: $scope.currentPos.lat
+        };
+        //send requestData as a query to destController.js
+        $location.path('/dest').search(requestData);
+    }//submit
 
     $scope.success = function(position){
         //console.log("in success");
