@@ -61,7 +61,6 @@
 
 
         login = function(user) {
-            
             return $http({
                method: 'POST',
                 url: "http://localhost:3000/api/login",
@@ -74,15 +73,6 @@
             }).error(function (err) {
                 console.log(err);
             });
-            // .then(
-            //     function success(data) {
-            //     console.log("Login Success");
-            //     saveToken(data.token);
-            //     $rootScope.driverStatus = data.driverStatus;
-            //     }, function error(response){
-
-
-            // });
         };
 
         logout = function() {
@@ -90,12 +80,14 @@
         };
 
         getUserInformation = function(requestInfo){
-            return $http({
+            $http({
                 method: "GET", 
                 url: "http://localhost:3000/api/profile",
                 data: $httpParamSerializerJQLike(requestInfo),
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded',
                            Authorization : 'Bearer ' + getToken()}
+            }).success(function(data){
+                return data;
             });
         }
 
@@ -154,12 +146,6 @@
         };
 
         updateDriverLocation = function(driverPosition) {
-            //connection to  availableDriverController.js
-            //required Data
-            //data for finding available Driver
-            //username: user.username,
-            //driverLatitude: user.latitude,
-            //driverLongitude: user.longitude
             return $http({
                 method: 'PUT',
                 url: "http://localhost:3000/api/driver",
