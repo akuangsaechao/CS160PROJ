@@ -26,6 +26,15 @@ module.exports.register = function(req, res) {
       user.phoneNumber = req.body.phoneNumber;
       user.creditCard = req.body.creditCard;
       user.driverStatus = req.body.driverStatus;
+
+      if (req.body.driverStatus === true){
+        availableDriver = new AvailableDriver();
+
+        availableDriver.driverName = req.body.username;
+        availableDriver.driverAvailability = false;
+        availableDriver.save();
+      }
+
       user.setPassword(req.body.password);
       user.save(function(err) {
         var token = user.generateJwt();

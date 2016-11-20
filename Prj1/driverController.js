@@ -1,4 +1,4 @@
-app.controller('driverCtrl',function ($scope, $location, $rootScope) {
+app.controller('driverCtrl',function ($scope, $location, $rootScope, authentication) {
 
     var drivers = [
         {
@@ -14,6 +14,53 @@ app.controller('driverCtrl',function ($scope, $location, $rootScope) {
     }
     $scope.submit = function() {
         $location.path('/waiting');
+    }
+
+    $scope.makeDriverAvailable = function(){
+
+        // Need to get current location of driver 
+        var driverPosition = {
+            driverLongitude: $scope.driverLongitude,
+            driverLatitude: $scope.driverLatitude
+        }
+
+        authentication.makeDriverAvailable(driverPosition).success(function(){
+            alert("You are now available as a driver");
+        }).error(function(){
+
+        });
+    }
+
+    $scope.makeDriverUnavailable = function(){
+        authentication.makeDriverAvailable().success(function(){
+            alert("You are no longer available as a driver");
+        }).error(function(){
+
+        });
+    }
+
+    $scope.getRiderRequest = function(){
+        authentication.lookForRiderRequest().success(function(){
+            // Populate HTML table with information
+        }).error(function(){
+
+        });
+    }
+
+    $scope.acceptRiderRequest = function(){
+        authentication.lookForRiderRequest().success(function(){
+            // Go to next page with the map of route to rider
+        }).error(function(){
+
+        });
+    }
+
+    $scope.declineRiderRequest = function(){
+        authentication.cancelRiderRequest().success(function(){
+            // Remove line from HTML
+        }).error(function(){
+
+        });
     }
 
     $scope.success = function(){

@@ -83,30 +83,77 @@
 
 
             // });
-
-            /*return $http.post('/api/login', user).success(function(data) {
-                saveToken(data.token);
-            });*/
         };
 
         logout = function() {
             $window.localStorage.removeItem('mean-token');
         };
-        profile = function(user) {
-            
+
+        getUserInformation = function(requestInfo){
+            return $http({
+                method: "GET", 
+                url: "http://localhost:3000/api/profile",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+        }
+
+        updateUserInformation = function(requestInfo){
+            return $http({
+                method: "PUT", 
+                url: "http://localhost:3000/api/profile",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+        }
+
+
+        getDriverHistory = function(requestInfo){
+            return $http({
+                method: "GET", 
+                url: "http://localhost:3000/api/driverHistory",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+        }
+
+        getRiderHistory = function(requestInfo){
+            return $http({
+                method: "GET", 
+                url: "http://localhost:3000/api/riderHistory",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+        }
+
+        makeDriverAvailable = function(driverPosition) {
             return $http({
                 method: 'POST',
-                url: "http://localhost:3000/api/profile",
-                data: $httpParamSerializerJQLike(user),
-                headers:{'Content-Type' : 'application/x-www-form-urlencoded'},
-                
-
+                url: "http://localhost:3000/api/available",
+                data: $httpParamSerializerJQLike(driverPosition),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
             }).success(function(data){
-                saveToken(data.token);
 
             });
         };
-        availableDriver = function(user) {
+
+        makeDriverUnavailable = function() {
+            return $http({
+                method: 'DELETE',
+                url: "http://localhost:3000/api/unavailable",
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            }).success(function(data){
+
+            });
+        };
+
+        updateDriverLocation = function(driverPosition) {
             //connection to  availableDriverController.js
             //required Data
             //data for finding available Driver
@@ -114,42 +161,111 @@
             //driverLatitude: user.latitude,
             //driverLongitude: user.longitude
             return $http({
-                method: 'POST',
-                url: "http://localhost:3000/api/availableDriver",
-                data: $httpParamSerializerJQLike(user),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-
+                method: 'PUT',
+                url: "http://localhost:3000/api/driver",
+                data: $httpParamSerializerJQLike(driverPosition),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
             }).success(function(data){
-                console.log("available driver");
-            });//http
-        };//available driver
-        riderRequest = function(requestInfo){
-            /*ar requestInfo = {
-                //data for reid-requestriderName: username,
-                riderStartLatitude: $rootScope.currentPos.lat,
-                riderStartLongitude: $rootScope.currentPos.lng,
-                riderEndLatitude: $rootScope.destPos.lat,
-                riderEndLongitude: $rootScope.destPos.lng
-            };*/
+ 
+             });
+        };
+
+
+        insertRiderRequest = function(requestInfo){
             return $http({
                 method: "POST", 
-                url: "http://localhost:3000/api/reiderRequestController",
+                url: "http://localhost:3000/api/request",
                 data: $httpParamSerializerJQLike(requestInfo),
-                headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            });//$http
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+            
+        }
+
+        lookForRiderRequest = function(requestInfo){
+            return $http({
+                method: "GET", 
+                url: "http://localhost:3000/api/request",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+            
+        }
+
+        checkForAcceptedRequest = function(requestInfo){
+            return $http({
+                method: "GET", 
+                url: "http://localhost:3000/api/request",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+            
+        }
+
+        acceptRiderRequest = function(requestInfo){
+            return $http({
+                method: "PUT", 
+                url: "http://localhost:3000/api/request",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+            
+        }
+
+        cancelRiderRequest = function(requestInfo){
+            return $http({
+                method: "DELETE", 
+                url: "http://localhost:3000/api/request",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
+            
+        }
+
+        completeRiderRequest = function(requestInfo){
+            return $http({
+                method: "DELETE", 
+                url: "http://localhost:3000/api/request",
+                data: $httpParamSerializerJQLike(requestInfo),
+                headers: {'Content-Type' : 'application/x-www-form-urlencoded',
+                           Authorization : 'Bearer ' + getToken()}
+            });
             
         }
 
 
         return {
-            currentUser : currentUser,
             saveToken : saveToken,
             getToken : getToken,
             isLoggedIn : isLoggedIn,
+            currentUser : currentUser,
+
+            logout : logout,
+
             register : register,
             login : login,
-            logout : logout,
-            riderRequest: riderRequest
+
+            getUserInformation: getUserInformation,
+            updateUserInformation: updateUserInformation,
+
+            getDriverHistory: getDriverHistory,
+            getRiderHistory: getRiderHistory,
+
+            makeDriverAvailable: makeDriverAvailable,
+            makeDriverUnavailable: makeDriverUnavailable,
+            updateDriverLocation: updateDriverLocation,
+
+            insertRiderRequest: insertRiderRequest,
+            lookForRiderRequest: lookForRiderRequest,
+            checkForAcceptedRequest: checkForAcceptedRequest,
+            acceptRiderRequest: acceptRiderRequest,
+            cancelRiderRequest: cancelRiderRequest,
+            completeRiderRequest: completeRiderRequest
         };
         
         

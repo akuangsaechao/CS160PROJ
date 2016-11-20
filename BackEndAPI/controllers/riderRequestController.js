@@ -50,7 +50,7 @@ module.exports.findAvailableDriver = function(req, res) {
 
         var riderRequest = new RiderRequest();
         riderRequest.driverName = availableDriver[index].driverName;
-        riderRequest.riderName = req.body.riderName;
+        riderRequest.riderName = req.payload.riderName;
         riderRequest.riderStartLongitute = req.body.riderStartLongitute;
         riderRequest.riderStartLatitude = req.body.riderStartLatitude;
         riderRequest.riderEndLongitute = req.body.riderEndLongitute;

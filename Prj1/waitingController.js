@@ -1,4 +1,4 @@
-app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
+app.controller('waitingCtrl',function ($scope, $location, $rootScope, authentication) {
 
     var drivers = [
     {
@@ -17,6 +17,20 @@ app.controller('waitingCtrl',function ($scope, $location, $rootScope) {
     }
     $scope.submit = function() {
         $location.path('/waiting');
+    }
+
+    $scope.checkRiderAccept = function() {
+        authentication.checkForAcceptedRequest().success(function(){
+            // Go to map with driver driving to pick up rider
+        }).error(function(){
+            // No drivers found
+        });
+    }
+
+    $scope.cancelRequest = function() {
+        authentication.cancelRiderRequest().success(function(){
+            $location.path('/dashboard');  
+        });
     }
 
     $scope.success = function(){

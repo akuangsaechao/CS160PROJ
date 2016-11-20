@@ -13,7 +13,17 @@ app.controller('confirmCtrl',function ($scope, $location, $rootScope) {
         $location.path('/dashboard');  
     }
     $scope.submit = function() {
-        $location.path('/waiting');
+
+        riderRequest = {
+            riderStartLongitute: $rootScope.currentPos.lng,
+            riderStartLatitude: $rootScope.currentPos.lat,
+            riderEndLongitute: $rootScope.destPos.lng,
+            riderEndLatitude: $rootScope.destPos.lat
+        }
+
+        authentication.insertRiderRequest(riderRequest).success(function(){
+            $location.path('/waiting');
+        });
     }
 
     $scope.success = function(){

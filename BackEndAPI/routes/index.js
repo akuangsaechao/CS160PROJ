@@ -31,10 +31,14 @@ router.get('/driverHistory', auth, ctrlHistory.driverHistoryRead);
 router.get('/request', auth, ctrlRideRequest.checkRiderRequest);
 router.post('/request', auth, ctrlRideRequest.findAvailableDriver);
 router.delete('/request', auth, ctrlRideRequest.completeRiderRequest); // When ride is complete delete request and add to history
+router.get('/accepted', auth, ctrlRideRequest.checkRequestAccepted);
+router.put('/request', auth, ctrlRideRequest.acceptRiderRequest);
+router.delete('/cancel', auth, ctrlRideRequest.cancelRiderRequest);
+
 
 // available drivers
-router.post('/driver', auth, ctrlAvailableDrivers.makeDriverAvailable);
-router.put('/driver', auth, ctrlAvailableDrivers.updateDriverLocation);
+router.put('/available', auth, ctrlAvailableDrivers.makeDriverAvailable);
+router.put('/unavailable', auth, ctrlAvailableDrivers.updateDriverLocation);
 router.delete('/driver', auth, ctrlAvailableDrivers.makeDriverUnavailable); // When log out check if driver status is true, delete driver
 
 

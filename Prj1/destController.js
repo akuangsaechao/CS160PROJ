@@ -8,16 +8,27 @@ app.controller('destCtrl',function ($scope, $location, $rootScope, authenticatio
     }
     $scope.submit = function() {
         //$location.search() contains query from requestController.js
-        var query = $location.search();
-        console.log("location search: " + JSON.stringify(query));
-        console.log("rider location: " + JSON.stringify($rootScope.destPos));
-        query.riderEndLatitude = $rootScope.destPos.lat;
-        query.riderEndLongitude = $rootScope.destPos.lng;
+        // var query = $location.search();
+        // console.log("location search: " + JSON.stringify(query));
+        // console.log("rider location: " + JSON.stringify($rootScope.destPos));
+        // query.riderEndLatitude = $rootScope.destPos.lat;
+        // query.riderEndLongitude = $rootScope.destPos.lng;
         //call riderRequest function in serviceCaller.js
-        authentication.riderRequest(query);
         //link to confirm
         $location.path('/confirm');
         //$location.path('/waiting');
+
+        // riderRequest = {
+        //     riderStartLongitute: $rootScope.currentPos.lng,
+        //     riderStartLatitude: $rootScope.currentPos.lat,
+        //     riderEndLongitute: $rootScope.destPos.lng,
+        //     riderEndLatitude: $rootScope.destPos.lat
+        // }
+
+        // authentication.insertRiderRequest(riderRequest).success(function(){
+        //     $location.path('/confirm');
+        // });
+
     }
 
     $scope.success = function(position){

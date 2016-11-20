@@ -11,17 +11,35 @@ module.exports.makeDriverAvailable = function(req, res) {
   } else {
 
     if (req.payload.driverStatus == true){
-      var availableDriver = new AvailableDriver();
 
-      availableDriver.driverName = req.payload.username;
-      availableDriver.driverLongitude = req.body.driverLongitude;
-      availableDriver.driverLatitude = req.body.driverLatitude;
-      availableDriver.save(function(err) {
-        res.status(200);
-        res.json({
-          "message" : "You are available"
-        });
-      }); 
+      AvailableDriver.update({ driverName: req.payload.username }, function (err, availableDriver) {
+
+        if (err) { 
+          res.status(404).json(err);
+          return;
+        }
+
+        // Available Driver Found
+        if (availableDriver) {
+          updatedDriver = availableDriver;
+          updatedDriver.driverLongitude = req.body.driverLongitude;
+          updatedDriver.driverLatitude = req.body.driverLatitude;
+          updatedDriver.driverAvailability = true;
+          updatedDriver.save(function(err) {
+            res.status(200);
+            res.json({
+              "message" : "Available Successful"
+            });
+          }); 
+        }
+
+        // No Available Driver Found
+        if (availableDriver === null) {
+          res.status(401).json({ "message" : "You are already available"});
+        } 
+
+      });
+
     }  
 
   }
@@ -38,7 +56,7 @@ module.exports.makeDriverUnavailable = function(req, res) {
 
       if (req.payload.driverStatus == true){
 
-        AvailableDriver.remove({ driverName: req.body.driverName }, function (err, availableDriver) {
+        AvailableDriver.update({ driverName: req.payload.username }, function (err, availableDriver) {
 
           if (err) { 
             res.status(404).json(err);
@@ -47,15 +65,19 @@ module.exports.makeDriverUnavailable = function(req, res) {
 
           // Available Driver Found
           if (availableDriver) {
-            res.status(200);
-            res.json({
-              "message" : "You are unavailable"
-            });
+            updatedDriver = availableDriver;
+            updatedDriver.driverAvailability = false;
+            updatedDriver.save(function(err) {
+              res.status(200);
+              res.json({
+              "message" : "Unavailable Successful"
+              });
+            }); 
           }
 
           // No Available Driver Found
           if (availableDriver === null) {
-            res.status(401).json({ "message" : "You are not available"});
+            res.status(401).json({ "message" : "You are already unavailable"});
           } 
 
         });

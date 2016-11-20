@@ -1,4 +1,4 @@
-app.controller('historyCtrl', function($scope, $location, $rootScope) {
+app.controller('historyCtrl', function($scope, $location, $rootScope, authentication) {
 	$scope.request = function() {
 		$location.path('/request');
 	};
@@ -8,6 +8,22 @@ app.controller('historyCtrl', function($scope, $location, $rootScope) {
 	$scope.account = function() {
 		$location.path('/account');
 	}
+
+   $scope.getUserAccount = function(){
+      if ($rootScope.driverStatus === true){
+         authentication.getDriverHistory().success(function(){
+            //Populate HTML with information
+         }).error(function(){
+
+         });
+      } else {
+         authentication.getRiderHistory().success(function(){
+            //Populate HTML with information
+         }).error(function(){
+            
+         });
+      }
+   }
 	$scope.customer = {
                firstName: "Mahesh",
                lastName: "Parashar",
