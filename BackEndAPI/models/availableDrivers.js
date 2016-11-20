@@ -6,11 +6,13 @@ var availableDriverSchema = new mongoose.Schema({
     required: true
   },
   driverLongitute: {
-    type: Number,
-    required: true
+    type: Number
   },
   driverLatitude: {
     type: Number,
+  },
+  driverAvailability: {
+    type: Boolean,
     required: true
   }
 });

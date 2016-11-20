@@ -111,22 +111,26 @@
 
 
         getDriverHistory = function(requestInfo){
-            return $http({
+            $http({
                 method: "GET", 
                 url: "http://localhost:3000/api/driverHistory",
                 data: $httpParamSerializerJQLike(requestInfo),
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded',
                            Authorization : 'Bearer ' + getToken()}
+            }).success(function(data){
+                return data;
             });
         }
 
         getRiderHistory = function(requestInfo){
-            return $http({
+            $http({
                 method: "GET", 
                 url: "http://localhost:3000/api/riderHistory",
                 data: $httpParamSerializerJQLike(requestInfo),
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded',
                            Authorization : 'Bearer ' + getToken()}
+            }).success(function(data){
+                return data;
             });
         }
 
@@ -137,9 +141,7 @@
                 data: $httpParamSerializerJQLike(driverPosition),
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded',
                            Authorization : 'Bearer ' + getToken()}
-            }).success(function(data){
-
-            });
+            })
         };
 
         makeDriverUnavailable = function() {
@@ -148,9 +150,7 @@
                 url: "http://localhost:3000/api/unavailable",
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded',
                            Authorization : 'Bearer ' + getToken()}
-            }).success(function(data){
-
-            });
+            })
         };
 
         updateDriverLocation = function(driverPosition) {
@@ -166,9 +166,7 @@
                 data: $httpParamSerializerJQLike(driverPosition),
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded',
                            Authorization : 'Bearer ' + getToken()}
-            }).success(function(data){
- 
-             });
+            })
         };
 
 
@@ -195,14 +193,15 @@
         }
 
         checkForAcceptedRequest = function(requestInfo){
-            return $http({
+            $http({
                 method: "GET", 
                 url: "http://localhost:3000/api/request",
                 data: $httpParamSerializerJQLike(requestInfo),
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded',
                            Authorization : 'Bearer ' + getToken()}
+            }).success(function(data){
+                return data;
             });
-            
         }
 
         acceptRiderRequest = function(requestInfo){

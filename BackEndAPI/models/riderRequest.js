@@ -24,6 +24,10 @@ var riderRequestSchema = new mongoose.Schema({
   riderEndLatitude: {
     type: Number,
     required: true
+  },
+  rideAccepted: {
+    type: Boolean,
+    required: true
   }
 });
 
