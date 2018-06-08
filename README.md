@@ -1,8 +1,8 @@
 # Ryde
-A Web Application version of the popular ride sharing company Uber and Lyft. 
+A ride sharing web application. 
 
 ### Developed by: 
 Akuang Saechao, Alvin Ly, Jamahl Reynolds, and Kaya Ota
 
 ### Ryde Demo Video: 
-Coming Soon
+[![ryde-demo](https://i3.ytimg.com/vi/GgEcxYV7Ndc/hqdefault.jpg)](https://youtu.be/GgEcxYV7Ndc)
