@@ -1,0 +1,66 @@
+<style type="text/css">
+    #map {
+        position: relative;
+        height: 100%;
+        min-height: 500px;
+        width: 100%;
+        min-width: 100px;
+        box-shadow: 3px 3px 10px gray;
+        float: middle;
+        border: 1px solid red;
+    }
+
+    #repeat {
+        display: inline;
+    }
+
+    #country_container {
+        width: 1000px;
+        margin: 13px 3px 3px 0px;
+        text-align: center;
+        width: 85px;
+        padding: 4px;
+        display: inline-table;
+        color: white;
+        background-color: black;
+        font-size: 12px;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 13px;
+    }
+
+    #country_container:hover {
+        box-shadow: 0px 0px 10px black;
+        background-color: gray;
+        border: 1px solid gray;
+        cursor: pointer;
+    }
+
+    #names {
+        cursor: pointer;
+    }
+</style>
+<body>
+<div class="main" ng-controller="waitingCtrl">
+    <h1>Let It Ride</h1>
+    <div class="main-row">
+        <!-- <h2>Your Ride is on the way.</h2> -->
+        <div class="agileits-top" style="min-height: 600px;">
+            <div id="map" style="width: 50%; height: 500px; float: left;"></div>
+            <div style="width: 48%; height: 500px; float: right;">
+                <h2><img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png" height="42"> This is your
+                    driver.<br>
+                    <img src="http://maps.google.com/mapfiles/ms/icons/red-dot.png" height="42"> This is your pickup
+                    location. <br>
+                    <img src="http://maps.google.com/mapfiles/ms/icons/yellow-dot.png" height="42"> This is your
+                    destination. <br>
+                    <br> Sit tight, your ride is on the way.</h2><br>
+
+                <!-- <p><a href="" ng-click="cancelRequest()"> <br> Cancel Ride? </a></p> -->
+                <p><a href="" ng-click="return()"> <br> Ride Complete? Click Here </a></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>

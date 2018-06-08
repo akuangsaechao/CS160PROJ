@@ -1,0 +1,25 @@
+<style type="text/css">
+    .agileits-top {
+        background: rgba(0, 0, 0, 1);
+    }
+
+    .main-row {
+        max-width: 600px;
+    }
+</style>
+<body>
+<!-- main -->
+<div class="main" ng-controller="pendingCtrl">
+    <h1>Awaiting for driver confirmation!</h1>
+    <div class="main-row">
+        <div class="agileits-top">
+            <h2> Please Wait. Your driver is being notified about your request. </h2>
+            <div style="width: 50%; margin: 0 auto; /*opacity: 0.62; filter: alpha(opacity=62);*/ /* For IE8 and earlier */">
+                <img src="loading.gif" alt="some_text" style="filter: invert(100%);"/></div>
+            <h3> Please do not leave or refresh this page. <br>
+                <p><a href="" ng-click="cancelRequest()"> <br> Cancel Ride? </a></p></h3>
+        </div>
+    </div>
+</div>
+<!-- //main -->
+</body>

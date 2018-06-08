@@ -1,0 +1,90 @@
+<style type="text/css">
+    #map {
+        position: relative;
+        height: 100%;
+        min-height: 500px;
+        width: 100%;
+        min-width: 100px;
+        box-shadow: 3px 3px 10px gray;
+        float: middle;
+        border: 1px solid red;
+    }
+
+    #repeat {
+        display: inline;
+    }
+
+    .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        color: black;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+    }
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+
+    .pac-container {
+        font-family: Roboto;
+    }
+
+    #country_container {
+        width: 1000px;
+        margin: 13px 3px 3px 0px;
+        text-align: center;
+        width: 85px;
+        padding: 4px;
+        display: inline-table;
+        color: white;
+        background-color: black;
+        font-size: 12px;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 13px;
+    }
+
+    #country_container:hover {
+        box-shadow: 0px 0px 10px black;
+        background-color: gray;
+        border: 1px solid gray;
+        cursor: pointer;
+    }
+
+    #names {
+        cursor: pointer;
+    }
+</style>
+<body>
+<div class="main" ng-controller="destCtrl">
+    <!-- <h1>Let It Ride</h1> -->
+    <div class="main-row">
+        <h2>Let us know where to drop you off.</h2>
+        <div class="agileits-top">
+            <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+            <div id="map"></div>
+            <form ng-submit="submit()" method="post" id="myLogin">
+                <input type="submit" value="Submit">
+            </form>
+            <p><a href="" ng-click="driver()"> <br> #TEMPORARY# Driver View? #TEMPORARY# </a></p>
+        </div>
+    </div>
+</div>
+</div>
+</body>

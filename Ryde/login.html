@@ -1,0 +1,23 @@
+<style type="text/css">
+    .main-row {
+        max-width: 500px;
+    }
+</style>
+<body>
+<!-- main -->
+<div class="main" ng-controller="loginCtrl">
+    <h1>Ryde</h1>
+    <div class="main-row">
+        <div class="agileits-top">
+            <form ng-submit="submit()" method="post" id="myLogin">
+                <input class="text" type="text" name="Username" ng-model="username" placeholder="Username" required>
+                <input class="text" type="password" name="password" ng-model="password" placeholder="Password" required>
+                <input type="submit" value="LOGIN">
+            </form>
+            <p><a href="" ng-click="signup()"> Not Signed Up?</a></p>
+        </div>
+    </div>
+</div>
+<!-- //main -->
+</body>
+</html>

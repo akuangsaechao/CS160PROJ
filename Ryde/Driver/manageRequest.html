@@ -1,0 +1,70 @@
+<style type="text/css">
+    .animate-switch-container {
+        position: relative;
+        background: white;
+        border: 1px solid black;
+        height: 40px;
+        overflow: hidden;
+    }
+
+    .animate-switch {
+        padding: 10px;
+    }
+
+    .animate-switch.ng-animate {
+        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .animate-switch.ng-leave.ng-leave-active,
+    .animate-switch.ng-enter {
+        top: -50px;
+    }
+
+    .animate-switch.ng-leave,
+    .animate-switch.ng-enter.ng-enter-active {
+        top: 0;
+    }
+</style>
+<body>
+<div class="main" ng-controller="manageRequestCtrl">
+    <h1>Let It Ride</h1>
+    <div class="main-row">
+        <h2>Driver Management Page</h2>
+        <div class="agileits-top">
+            <div style="width: 100%;">
+                <select ng-model="selection" ng-options="item for item in items">
+                </select>
+
+                <!--           <hr/>
+                          <div class="animate-switch-container" ng-switch on="selection">
+                            <div class="animate-switch" ng-switch-default>default</div>
+                          </div> -->
+                <div ng-hide="hidden">
+                    <table ng-table="tableParams">
+                        <tbody>
+                        <tr ng-repeat="user in data">
+                            <td><h3>{{user.riderName}}</h3></td>
+                            <td>|||</td>
+                            <td>
+                                <button ng-click="acceptRiderRequest(user)"><strong>Accept</strong></button>
+                                <button ng-click="declineRiderRequest(user.riderName)"><strong>Decline</strong></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <form ng-submit="update()" method="post" id="myUpdate">
+                <input type="submit" value="Confirm availability">
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
